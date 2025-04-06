@@ -173,3 +173,39 @@ resource "aws_route_table_association" "public_subnet_association_az1b" {
 
 # Create a Private Route Table for the private subnets.
 # Ensure you name the route table to private_route_table-az1a to match the naming convention.
+resource "aws_route_table" "cloudswitch360_private_rt" {
+  vpc_id = aws_vpc.cloudswitch360_project_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.cloudswitch360_nat_gateway-az1a.id
+  }
+
+  tags = {
+    Name = "Route Table for Private Subnets"
+  }
+}
+
+# associate the private route table with the private subnets in AZ 1a
+resource "aws_route_table_association" "private_app_subnet_association_az1a" {
+  subnet_id      = aws_subnet.cloudswitch360_project_private_app_subnet-az1a.id
+  route_table_id = aws_route_table.cloudswitch360_private_rt.id
+}
+
+# associate the orivarte route table with a private database subnet in AZ 1a
+resource "aws_route_table_association" "private_db_subnet_association_az1a" {
+  subnet_id      = aws_subnet.cloudswitch360_project_private_db_subnet-az1a.id
+  route_table_id = aws_route_table.cloudswitch360_private_rt.id
+}
+
+# associate the private route table with the private subnets in AZ 1b
+resource "aws_route_table_association" "private_app_subnet_association_az1b" {
+  subnet_id      = aws_subnet.cloudswitch360_project_private_app_subnet-az1b.id
+  route_table_id = aws_route_table.cloudswitch360_private_rt.id
+}
+
+# associate the private route table with the private database subnet in AZ 1b
+resource "aws_route_table_association" "private_db_subnet_association_az1b" {
+  subnet_id      = aws_subnet.cloudswitch360_project_private_db_subnet-az1b.id
+  route_table_id = aws_route_table.cloudswitch360_private_rt.id
+}
