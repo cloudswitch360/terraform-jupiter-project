@@ -2,93 +2,95 @@
 
 A comprehensive 3-tier AWS infrastructure project designed for educational purposes using Terraform.
 
-## Project Overview
+---
 
-The Jupiter Project is an educational infrastructure-as-code implementation that demonstrates how to build a robust, scalable 3-tier architecture on AWS using Terraform. This project is intended as a teaching tool for students learning cloud architecture, infrastructure-as-code, and AWS deployment best practices.
+## 📷 Architecture Diagram
 
-## 3-Tier Architecture Design
+![3-Tier Architecture](https://github.com/cloudswitch360/terraform-jupiter-project/blob/main/3_tier_png.png?raw=true)
 
-The project implements a classic 3-tier application architecture:
+---
 
-1. **Presentation Tier (Web Tier)**
-   - Hosted in public subnets across multiple availability zones
-   - Accessible from the internet via an Application Load Balancer
-   - Protected by security groups and network ACLs
+## 🧭 Project Overview
 
-2. **Application Tier**
-   - Hosted in private subnets across multiple availability zones
-   - Not directly accessible from the internet
-   - Communicates with the web tier and database tier
-   - Protected by security groups
+The **Jupiter Project** is an educational infrastructure-as-code implementation that demonstrates how to build a robust, scalable 3-tier architecture on AWS using **Terraform**. This project is intended as a teaching tool for students learning cloud architecture, infrastructure-as-code, and AWS deployment best practices.
 
-3. **Data Tier**
-   - Hosted in isolated private subnets across multiple availability zones
-   - Only accessible from the application tier
-   - Database instances with replication for high availability
-   - Protected by security groups
+---
 
-## Infrastructure Components
+## 🏗️ 3-Tier Architecture Design
 
-The following components will be implemented:
+This project implements a classic 3-tier application architecture:
 
-### Network Infrastructure
-- VPC with CIDR block 10.0.0.0/16
-- Public subnets in two availability zones
-- Private application subnets in two availability zones
-- Private database subnets in two availability zones
-- Internet Gateway for public internet access
-- NAT Gateway for private subnet outbound access
-- Route tables for traffic management
+### 1. **Presentation Tier (Web Tier)**
+- Hosted in **public subnets** across multiple availability zones
+- Accessible from the internet via an **Application Load Balancer**
+- Protected by **Security Groups** and **Network ACLs**
 
-### Security
-- Security Groups for each tier
-- Network ACLs for subnet-level security
-- IAM roles and policies for secure resource access
+### 2. **Application Tier**
+- Hosted in **private subnets** across multiple availability zones
+- Not directly accessible from the internet
+- Communicates with the Web and Data tiers
+- Secured with **Security Groups**
 
-### Compute Resources
-- Application Load Balancer for the web tier
-- EC2 instances or Auto Scaling Groups for the web and application tiers
-- Optional: Elasticache for session management
+### 3. **Data Tier**
+- Hosted in **isolated private subnets** across multiple availability zones
+- Accessible **only from the Application tier**
+- Database instances with **replication for high availability**
+- Fully protected by **Security Groups**
 
-### Database
-- RDS instance with Multi-AZ deployment
-- Subnet group for database placement
+---
 
-### Monitoring and Logging
-- CloudWatch for monitoring and alerts
-- CloudTrail for API logging
+## ⚙️ Infrastructure Components
 
-## Educational Purpose
+### 🌐 Network Infrastructure
+- VPC with CIDR block `10.0.0.0/16`
+- Public subnets in **two availability zones**
+- Private application subnets in **two availability zones**
+- Private database subnets in **two availability zones**
+- **Internet Gateway** for public internet access
+- **NAT Gateway** for outbound access from private subnets
+- Route Tables for traffic control and subnet routing
 
-This project is designed specifically for educational purposes and includes:
+### 🔒 Security
+- **Security Groups** for each tier (Web, App, DB)
+- **Network ACLs** for subnet-level protection
+- **IAM Roles & Policies** for secure access control
+
+### 💻 Compute Resources
+- **Application Load Balancer** for the Web Tier
+- **EC2 Instances** or **Auto Scaling Groups** for Web and Application Tiers
+- *(Optional)*: **ElastiCache** for session/state management
+
+### 🗄️ Database
+- **Amazon RDS** instance with **Multi-AZ** deployment
+- Custom **DB Subnet Group** for isolated DB hosting
+
+### 📊 Monitoring and Logging
+- **Amazon CloudWatch** for metrics and alarms
+- **AWS CloudTrail** for logging API activities and audit trails
+
+---
+
+## 🎓 Educational Purpose
+
+This project is designed specifically for **learning** and **demonstration** purposes and includes:
+
 - Detailed comments in all Terraform files explaining each resource
-- Best practices for infrastructure design and security
-- Modular architecture to demonstrate component relationships
+- Best practices for cloud architecture and security
+- A **modular architecture** to clearly show relationships between components
 
-**Note**: This is a training resource. Do not modify existing code as it's structured specifically for teaching purposes.
+> ⚠️ **Note:** This is a training resource. Please **do not modify** the existing code, as it’s intentionally structured for educational clarity.
 
-## Getting Started
+---
 
-1. Ensure you have Terraform installed (v1.0.0+)
-2. Configure AWS credentials with appropriate permissions
-3. Review the code and comments to understand the architecture
-4. Run `terraform init` to initialize the project
-5. Run `terraform plan` to see the execution plan
-6. Run `terraform apply` to deploy the infrastructure
-7. When finished, run `terraform destroy` to remove all resources
+## 🚀 Getting Started
 
+To deploy the Jupiter Project:
 
-## Future Components
-
-The following components will be added to complete the architecture:
-- EC2 Auto Scaling Groups
-- Application Load Balancer
-- RDS Database
-- Security Groups
-- CloudWatch Monitoring
-- S3 for static assets
-- CloudFront for content delivery
-
-## Contributing
-
-This project is for educational purposes. Please do not modify the existing code as it's intended to train students.
+1. **Install** Terraform (version `v1.0.0+`)
+2. **Configure** your AWS credentials with appropriate permissions
+3. **Review** the code and comments to understand the architecture
+4. Run:
+   ```bash
+   terraform init
+   terraform plan
+   terraform apply
