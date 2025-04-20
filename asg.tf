@@ -4,7 +4,7 @@ resource "aws_launch_template" "webserver_launch_template" {
   name          = "webserver-launch-template"
   image_id      = var.ec2_ami_id
   instance_type = "t2.micro"        # This can be a variable as well
-  key_name      = "patty_moore_key" # this can be a variable as well
+  key_name      = ""                # this can be a variable as well
   description   = "launch template on asg"
 
   monitoring {

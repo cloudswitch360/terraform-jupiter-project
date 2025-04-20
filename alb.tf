@@ -1,17 +1,17 @@
 # create application load balancer
 # terraform aws create application load balancer
 resource "aws_lb" "application_load_balancer" {
-  name               = "cloudswitch360-jupiter-alb"
+  name               = ""
   internal           = false
   load_balancer_type = "application"
-  security_groups    = 
+  security_groups    = [aws_security_group.alb_security_group.id]
 
   subnet_mapping {
-    subnet_id = aws_subnet.cloudswitch360_project_public_subnet-az1a.id # public subnet in az1a
+    subnet_id =  # public subnet in az1a
   }
 
   subnet_mapping {
-    subnet_id = aws_subnet.cloudswitch360_project_public_subnet-az1b.id # public subnet in az1b
+    subnet_id = # public subnet in az1b
   }
 
   enable_deletion_protection = false
@@ -79,6 +79,6 @@ resource "aws_lb_listener" "alb_https_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.alb_target_group.arn
+    target_group_arn = 
   }
 }
